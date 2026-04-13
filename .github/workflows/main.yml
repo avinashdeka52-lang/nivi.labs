@@ -22,7 +22,7 @@ jobs:
         run: |
           mkdir nivi_build
           cp sketch_apr13a.ino nivi_build/nivi_build.ino
-          arduino-cli compile --fqbn esp32:esp32:esp32:PartitionScheme=min_spiffs --export-binaries nivi_build/nivi_build.ino
+          arduino-cli compile --fqbn esp32:esp32:esp32:PartitionScheme=huge_app --export-binaries nivi_build
 
       - name: Get the Bin
         uses: actions/upload-artifact@v4
