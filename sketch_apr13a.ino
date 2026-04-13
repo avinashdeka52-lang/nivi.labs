@@ -1,4 +1,4 @@
-// ===== NIVI OS v2.1 (God Tier Animation Edition) =====
+// ===== NIVI OS v2.2 (God Tier Animation Edition) =====
 //
 // Animations : Aurora Wave, Wink, Scan/HUD, Lightning Storm, Sleep Story, Peek
 // Boot Logo  : Nivi Labs (flask icon + clean branding)
