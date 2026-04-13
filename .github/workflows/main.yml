@@ -7,8 +7,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
+      - uses: actions/checkout@v4
+ 
       - name: Setup Arduino CLI
         uses: arduino/setup-arduino-cli@v1.1.2
 
@@ -25,7 +25,7 @@ jobs:
           arduino-cli compile --fqbn esp32:esp32:esp32:PartitionScheme=min_spiffs --export-binaries nivi_build/nivi_build.ino
 
       - name: Get the Bin
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Firmware
           path: nivi_build/**/*.bin
