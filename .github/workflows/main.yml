@@ -1,0 +1,31 @@
+name: Compile Nivi Firmware
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v1.1.2
+
+      - name: Install ESP32 & Libraries
+        run: |
+          arduino-cli core update-index --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli core install esp32:esp32 --additional-urls https://espressif.github.io/arduino-esp32/package_esp32_index.json
+          arduino-cli lib install "Adafruit GFX Library" "Adafruit SSD1306" "Arduino_JSON"
+
+      - name: Compile
+        run: |
+          mkdir nivi_build
+          cp sketch_apr13a.ino nivi_build/nivi_build.ino
+          arduino-cli compile --fqbn esp32:esp32:esp32:PartitionScheme=min_spiffs --export-binaries nivi_build/nivi_build.ino
+
+      - name: Get the Bin
+        uses: actions/upload-artifact@v3
+        with:
+          name: Firmware
+          path: nivi_build/**/*.bin
